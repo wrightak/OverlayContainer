@@ -31,9 +31,9 @@ class ActivityControllerPresentationLikeViewController: UIViewController,
 
     func actionViewControllerDidSelectionAction() {
         let container = OverlayContainerViewController()
-        container.viewControllers = [ColoredViewController()]
+        container.viewControllers = [UINavigationController(rootViewController: ColoredViewController())]
         container.delegate = self
-        container.moveOverlay(toNotchAt: Notch.medium.rawValue, animated: false)
+        container.moveOverlay(toNotchAt: Notch.minimum.rawValue, animated: false)
         container.transitioningDelegate = self
         container.modalPresentationStyle = .custom
         present(container, animated: true, completion: nil)
@@ -61,7 +61,7 @@ class ActivityControllerPresentationLikeViewController: UIViewController,
     func overlayContainerSheetDismissalPolicy(for presentationController: OverlayContainerSheetPresentationController) -> OverlayContainerSheetDismissalPolicy {
         var policy = ThresholdOverlayContainerSheetDismissalPolicy()
         policy.dismissingVelocity = .value(2400)
-        policy.dismissingPosition = .notch(index: Notch.medium.rawValue)
+        policy.dismissingPosition = .notch(index: Notch.minimum.rawValue)
         return policy
     }
 
